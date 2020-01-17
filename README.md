@@ -16,11 +16,14 @@ This project is for the BETA nanodegree **Intermediate Python** at Udacity that 
 
 ## Installation
 
-Download to your project directory, add `README.md`, and commit:
+Download to your project directory, (python3 required):
 
 ```sh
 git clone git@github.com:carlosloureda/meme-generator.git
 cd meme-generator
+pip install flask
+
+python3 app.py
 ```
 
 ## Starter Code Overview
@@ -51,11 +54,36 @@ For those users that have access to the nanodegree, here is a direct [link to th
 
 ## Arquitecture
 
+- Entry point: `app.py`
+  - templates are on: `templates/`
+  - generated images should be saved on `static/`
+
 This project focuses in 3 main `modules`:
 
-- Quote Engine Module
-- Meme Generator Module
-- Main Application
+## Quote Engine Module
+
+The Quote Engine Module is responsible for ingesting many types of files that contain quotes. A quote contains a body and an author (e.g. "this is a quote body" - Author). This module will be composed of many classes and demonstrate your understanding of complex inheritance, abstract classes, classmethods, strategy objects and other fundamental programming principles.
+
+Review rubric for specific details.
+
+**Quote Format**
+Example quotes are provided in a variety of files, take a moment to review the file formats in `./_data/SimpleLines` and `./_data/DogQuotes`. Your task is to design a system to extract each quote line-by-line from these files.
+
+**Ingestors**
+An abstract base class, IngestorInterface should define two methods with the following class method signatures:
+
+```python
+def can_ingest(cls, path) -> boolean
+def parse(cls, path: str) -> List[QuoteModel]
+```
+
+Separate strategy objects should realize `IngestorInterface` for each file type (csv, docx, pdf, txt).
+
+A final Ingestor class should realize the `IngestorInterface` abstract base class and encapsulate your helper classes. It should implement logic to select the appropriate helper for a given file based on filetype.
+
+## Meme Generator Module
+
+## Main Application
 
 ## Support
 
