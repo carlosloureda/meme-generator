@@ -5,7 +5,7 @@ from PIL import Image, ImageDraw, ImageFont
 import os
 
 
-class Meme():
+class MemeEngine():
     """Lets us create new memes from our images and strings folders.
 
     Attributes:
@@ -48,7 +48,7 @@ class Meme():
         if text is not None:
             draw = ImageDraw.Draw(img)
             font = ImageFont.truetype(
-                "../_data/fonts/impact.ttf", size=self.font_size)
+                "./_data/fonts/impact.ttf", size=self.font_size)
 
             # We want the texts centered
             if not pos:
@@ -102,6 +102,7 @@ class Meme():
             out_path {str} -- The path where that new meme was saved.
         """
         # TODO: check if this is possible??
+        img_path = img_path
         img = Image.open(img_path)
 
         img = self.__resize_image(img, width)
@@ -113,6 +114,6 @@ class Meme():
         return out_path
 
 
-memeGenerator = Meme("./output_memes")
-memeGenerator.make_meme(
-    "../_data/photos/dog/xander_1.jpg", "Quote 1", "Author 1")
+# memeGenerator = MemeEngine("./output_memes")
+# memeGenerator.make_meme(
+#     "../_data/photos/dog/xander_1.jpg", "Quote 1", "Author 1")

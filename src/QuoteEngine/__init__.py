@@ -1,1 +1,1 @@
-# from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
