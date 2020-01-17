@@ -24,22 +24,18 @@ class TXTIngestor(IngestorInterface):
         Returns:
             List[QuoteModel] -- All the quotes present in that given file
         """
+        if not cls.can_ingest(path):
+            raise Exception("Cannot ingest exception")
 
+        quote_file = open(path, 'r')
+        quotes = []
+        for line in quote_file.read().splitlines():
+            if len(line) > 1:
+                quote, author = line.split(" - ")
+                quotes.append(QuoteModel(quote, author))
 
-<< << << < HEAD
- if not cls.can_ingest(path):
-        raise Exception("Cannot ingest exception")
-== == == =
->>>>>> > a312a477b879a2f4834b43e90a0cad10eb0837fc
- quote_file = open(path, 'r')
-  quotes = []
-   for line in quote_file.read().splitlines():
-        if len(line) > 1:
-            quote, author = line.split(" - ")
-            quotes.append(QuoteModel(quote, author))
-
-    quote_file.close()
-    return quotes
+        quote_file.close()
+        return quotes
 
 
 # ingestor = TXTIngestor.parse('../_data/SimpleLines/SimpleLines.txt')

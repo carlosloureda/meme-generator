@@ -3,13 +3,41 @@ import os
 import requests
 from flask import Flask, render_template, abort, request
 
+from typing import List
+from PIL import Image
+
 from QuoteEngine import Ingestor
 # @TODO Import your MemeEngine classes
 
 
 app = Flask(__name__)
 
-meme = MemeEngine('./static')
+# meme = MemeEngine('./static')
+
+
+# TODO: Add this to utils or to a class ? Use the pythons standard library os class to find all
+# images within the images images_path directory
+
+
+def get_images(path: str) -> List[Image]:
+    """Get all the images in path
+
+    Arguments:
+        path {str} -- The path where to look for images
+
+    Return:
+        List[Image] -- A List of iamges on Pillow format
+    """
+    imgs = []
+    valid_images = [".jpg", ".gif", ".png", ".tga"]
+    for f in os.listdir(path):
+        ext = os.path.splitext(f)[1]
+        if ext.lower() not in valid_images:
+            continue
+        imgs.append(Image.open(os.path.join(path, f)))
+
+    print(imgs)
+    return imgs
 
 
 def setup():
@@ -19,8 +47,6 @@ def setup():
                    './_data/DogQuotes/DogQuotesPDF.pdf',
                    './_data/DogQuotes/DogQuotesCSV.csv']
 
-    # TODO: Use the Ingestor class to parse all files in the
-    # quote_files variable
     quotes = []
 
     for file in quote_files:
@@ -28,14 +54,13 @@ def setup():
 
     images_path = "./_data/photos/dog/"
 
-    # TODO: Use the pythons standard library os class to find all
-    # images within the images images_path directory
-    imgs = None
+    imgs = get_images(images_path)
 
     return quotes, imgs
 
 
 quotes, imgs = setup()
+# print(quotes, imgs)
 
 
 @app.route('/')
