@@ -19,4 +19,4 @@ class QuoteModel():
 
     def __repr__(self) -> str:
         """Override the "official" string representation of an object."""
-        return f'<"{self.body}" - {self.author}>'
+        return f'{self.body} - {self.author}'
