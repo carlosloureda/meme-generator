@@ -3,7 +3,9 @@ import os
 import requests
 from flask import Flask, render_template, abort, request
 
-# @TODO Import your Ingestor and MemeEngine classes
+from QuoteEngine import Ingestor
+# @TODO Import your MemeEngine classes
+
 
 app = Flask(__name__)
 
@@ -11,8 +13,7 @@ meme = MemeEngine('./static')
 
 
 def setup():
-    """Load all resources """
-
+    """Load all resources."""
     quote_files = ['./_data/DogQuotes/DogQuotesTXT.txt',
                    './_data/DogQuotes/DogQuotesDOCX.docx',
                    './_data/DogQuotes/DogQuotesPDF.pdf',
@@ -20,7 +21,10 @@ def setup():
 
     # TODO: Use the Ingestor class to parse all files in the
     # quote_files variable
-    quotes = None
+    quotes = []
+
+    for file in quote_files:
+        quotes += Ingestor.parse(file)
 
     images_path = "./_data/photos/dog/"
 

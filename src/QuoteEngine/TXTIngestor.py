@@ -1,8 +1,8 @@
 """IngestorInterface strategy operator that implements an Ingestor strategy for text files."""
 
 from typing import List
-from IngestorInterface import IngestorInterface
-from QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
 
 
 class TXTIngestor(IngestorInterface):

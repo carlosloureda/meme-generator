@@ -3,8 +3,8 @@
 from typing import List
 import pandas
 
-from IngestorInterface import IngestorInterface
-from QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
 
 
 class CSVIngestor(IngestorInterface):

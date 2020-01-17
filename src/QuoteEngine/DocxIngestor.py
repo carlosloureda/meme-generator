@@ -3,8 +3,8 @@
 from typing import List
 # pip3 install python-docx
 from docx import Document
-from IngestorInterface import IngestorInterface
-from QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
 
 
 class DocxIngestor(IngestorInterface):

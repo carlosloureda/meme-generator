@@ -5,8 +5,8 @@ import subprocess
 import os
 import random
 
-from IngestorInterface import IngestorInterface
-from QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
 
 
 class PDFIngestor(IngestorInterface):

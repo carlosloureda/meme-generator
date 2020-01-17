@@ -1,15 +1,15 @@
 """Strategy operator that implements all Ingestor strategies."""
 from typing import List
-from IngestorInterface import IngestorInterface
-from QuoteModel import QuoteModel
+from .IngestorInterface import IngestorInterface
+from .QuoteModel import QuoteModel
 
-from DocxIngestor import DocxIngestor
-from CSVIngestor import CSVIngestor
-from PDFIngestor import PDFIngestor
-from TXTIngestor import TXTIngestor
+from .DocxIngestor import DocxIngestor
+from .CSVIngestor import CSVIngestor
+from .PDFIngestor import PDFIngestor
+from .TXTIngestor import TXTIngestor
 
 
-class Importer(IngestorInterface):
+class Ingestor(IngestorInterface):
     """Defines a method to parse all files calling the different Ingestors.
 
     Attributes:
