@@ -101,6 +101,10 @@ class MemeEngine():
         Returns:
             out_path {str} -- The path where that new meme was saved.
         """
+
+        if width > 500:
+            raise Exception(
+                "Sorry human 🧑! I can only resize images to a maximun of 500px")
         # TODO: check if this is possible??
         img_path = img_path
         img = Image.open(img_path)
