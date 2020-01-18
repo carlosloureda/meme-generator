@@ -6,7 +6,7 @@ from .QuoteModel import QuoteModel
 from .DocxIngestor import DocxIngestor
 from .CSVIngestor import CSVIngestor
 from .PDFIngestor import PDFIngestor
-from .TXTIngestor import TXTIngestor
+from .TextIngestor import TextIngestor
 
 
 class Ingestor(IngestorInterface):
@@ -16,7 +16,7 @@ class Ingestor(IngestorInterface):
         ingestors {[IngestorInterface]} -- An array of all the ingestor to test
     """
 
-    ingestors = [DocxIngestor, CSVIngestor, PDFIngestor, TXTIngestor]
+    ingestors = [DocxIngestor, CSVIngestor, PDFIngestor, TextIngestor]
 
     @classmethod
     def parse(cls, path: str) -> List[QuoteModel]:

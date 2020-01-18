@@ -5,7 +5,7 @@ from .IngestorInterface import IngestorInterface
 from .QuoteModel import QuoteModel
 
 
-class TXTIngestor(IngestorInterface):
+class TextIngestor(IngestorInterface):
     """Defines the two methods for implement the `txt` ingestion strategies.
 
     Attributes:
@@ -38,6 +38,6 @@ class TXTIngestor(IngestorInterface):
         return quotes
 
 
-# ingestor = TXTIngestor.parse('../_data/SimpleLines/SimpleLines.txt')
-# ingestor = TXTIngestor.parse('../_data/DogQuotes/DogQuotesTXT.txt')
+# ingestor = TextIngestor.parse('../_data/SimpleLines/SimpleLines.txt')
+# ingestor = TextIngestor.parse('../_data/DogQuotes/DogQuotesTXT.txt')
 # print(ingestor)
