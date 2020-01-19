@@ -4,9 +4,8 @@ import os
 import random
 import argparse
 
-from QuoteEngine import Ingestor
-from QuoteEngine import QuoteModel
-from MemeGenerator import MemeEngine
+from quote_engine import Ingestor, QuoteModel
+from meme_generator import MemeEngine
 
 
 def generate_meme(path: str = None, body: str = None, author: str = None) -> str:

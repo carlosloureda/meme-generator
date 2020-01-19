@@ -10,8 +10,10 @@ from flask import Flask, render_template, abort, request, redirect, url_for
 from typing import List, Tuple
 from PIL import Image
 
-from QuoteEngine import Ingestor
-from MemeGenerator import MemeEngine
+# On the rubric thy mention the names in PascalCase but also ask for followint PEP8 conventions
+# so follwowing those namign conventions I had to rename the modules into lowercase
+from quote_engine import Ingestor
+from meme_generator import MemeEngine
 
 app = Flask(__name__)
 meme = MemeEngine('./static')
