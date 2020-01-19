@@ -26,7 +26,6 @@ class DocxIngestor(IngestorInterface):
         Returns:
             List[QuoteModel] -- All the quotes present in that given file
         """
-
         if not cls.can_ingest(path):
             raise Exception("Cannot ingest exception")
         quotes = []

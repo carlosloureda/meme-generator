@@ -4,7 +4,8 @@ the user can see random created memes or create a custom one."""
 import random
 import os
 import requests
-from flask import Flask, render_template, abort, request, jsonify
+import json
+from flask import Flask, render_template, abort, request, redirect, url_for
 
 from typing import List, Tuple
 from PIL import Image
@@ -12,14 +13,8 @@ from PIL import Image
 from QuoteEngine import Ingestor
 from MemeGenerator import MemeEngine
 
-
 app = Flask(__name__)
-
 meme = MemeEngine('./static')
-
-
-# @TODO: Add this to utils or to a class ? Use the pythons standard library os class to find all
-# images within the images images_path directory
 
 
 def get_images(path: str) -> List[str]:
@@ -88,15 +83,14 @@ def meme_form():
     Returns:
         The result of rendering the `meme_form.html` template
     """
+    messages = request.args['messages']  # counterpart for url_for()
+    # return render_template('meme_form.html', error=json.loads(messages.error))
     return render_template('meme_form.html')
+
 
 # https://i.redd.it/me6ijotn0kq31.jpg
 # I love you 3000
 # Tony Stark
-
-    # image_url: https://i.redd.it/me6ijotn0kq31.jpg
-
-
 @app.route('/create', methods=['POST'])
 def meme_post():
     """Create a user defined meme.
@@ -107,16 +101,13 @@ def meme_post():
     if not request or not request.form:
         raise Exception("Not proper request")
 
-        # @TODO:
     # 1. Use requests to save the image from the image_url
     #    form param to a temp local file.
     data = request.form.to_dict(flat=True)
-    if data["image_url"] == "" or data["body"] == "":
-        # @TODO: Add or send some errors here. Also make the previous form
-        #  check on the clinet
-        print("Error on required images")
-        raise Exception(
-            "Sorry human! I need an image and a quote for builing a meme for you :)")
+    # if data["image_url"] == "" or data["body"] == "":
+    #     messages = json.dumps(
+    #         {"error": "Sorry human! I need an image and a quote for builing a meme for you :)"})
+    #     return redirect(url_for('meme_form', messages=messages))
 
     image_url = data["image_url"]
     image_tmp_path = f'./tmp/{image_url[image_url.rfind("/") +1:]}'
