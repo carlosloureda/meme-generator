@@ -5,7 +5,7 @@ import random
 import os
 import requests
 import json
-from flask import Flask, render_template, abort, request, redirect, url_for, session
+from flask import Flask, render_template, abort, request, redirect, url_for
 
 from typing import List, Tuple
 from PIL import Image
@@ -16,7 +16,6 @@ from quote_engine import Ingestor
 from meme_generator import MemeEngine
 
 app = Flask(__name__)
-app.secret_key = b'udacity_rules'
 meme = MemeEngine('./static')
 
 
@@ -86,12 +85,9 @@ def meme_form():
     Returns:
         The result of rendering the `meme_form.html` template
     """
-    error = session.get("error") if session.get("error") else None
-    # messages = request.args['messages']  # counterpart for url_for()
-    session["error"] = None
-
-    return render_template('meme_form.html', error=error)
-    # return render_template('meme_form.html')
+    messages = request.args['messages']  # counterpart for url_for()
+    # return render_template('meme_form.html', error=json.loads(messages.error))
+    return render_template('meme_form.html')
 
 
 # https://i.redd.it/me6ijotn0kq31.jpg
@@ -110,22 +106,15 @@ def meme_post():
     # 1. Use requests to save the image from the image_url
     #    form param to a temp local file.
     data = request.form.to_dict(flat=True)
-
-    if data["image_url"] == "" or data["body"] == "":
-        required_fields_msg = "an image" if data["image_url"] == "" else None
-        if data["body"] == "":
-            required_fields_msg = f'{required_fields_msg} and a quote' if required_fields_msg else "a quote"
-        session["error"] = f'Sorry human! I need {required_fields_msg} for builing a meme for you :)'
-        return redirect(url_for('meme_form'))
+    # if data["image_url"] == "" or data["body"] == "":
+    #     messages = json.dumps(
+    #         {"error": "Sorry human! I need an image and a quote for builing a meme for you :)"})
+    #     return redirect(url_for('meme_form', messages=messages))
 
     image_url = data["image_url"]
-
-    if not os.path.exists("./tmp"):
-        os.mkdir("./tmp")
-
     image_tmp_path = f'./tmp/{image_url[image_url.rfind("/") +1:]}'
-
     r = requests.get(image_url, allow_redirects=False)
+
     open(image_tmp_path, 'wb').write(r.content)
 
     # 2. Use the meme object to generate a meme using this temp

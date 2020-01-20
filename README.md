@@ -85,6 +85,21 @@ A final Ingestor class should realize the `IngestorInterface` abstract base clas
 
 ## Main Application
 
+## Web App
+
+For running the web page under flask, you need to have `flask` installed.
+
+```
+flask run
+```
+
+If you want to enable hot reloadin (through the development environment):
+
+```
+export FLASK_ENV=development
+flask run
+```
+
 ## Support
 
 Please [open an issue](https://github.com/carlosloureda/meme-generator/issues/new) for support.
