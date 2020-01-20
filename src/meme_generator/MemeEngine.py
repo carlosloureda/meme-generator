@@ -25,14 +25,14 @@ class MemeEngine():
         self.output_dir = output_dir
         self.font_size = font_size
 
-    def __resize_image(self, img: Image, width: int) -> Image:
+    def _resize_image(self, img: Image, width: int) -> Image:
         """Resizes an image at the given width,  the height is scaled proportionally."""
         ratio = width/float(img.size[0])
         height = int(ratio*float(img.size[1]))
         img = img.resize((width, height), Image.NEAREST)
         return img
 
-    def __add_text_to_image(self, img: Image, text: str, is_footer: bool = False, pos: Tuple[int, int] = None) -> None:
+    def _add_text_to_image(self, img: Image, text: str, is_footer: bool = False, pos: Tuple[int, int] = None) -> None:
         """Write a text into an image.
 
         This private method will align center the texts depending on the image and text width, also
@@ -62,7 +62,7 @@ class MemeEngine():
 
             draw.text(pos, text, fill="white",  font=font)
 
-    def __save_meme_to_folder(self, img: Image, img_path: str) -> str:
+    def _save_meme_to_folder(self, img: Image, img_path: str) -> str:
         """Save the new created meme into the proper image folder.
 
         It gets the original file path to get the new name of the meme file, this will work like this:
@@ -109,12 +109,12 @@ class MemeEngine():
         img_path = img_path
         img = Image.open(img_path)
 
-        img = self.__resize_image(img, width)
+        img = self._resize_image(img, width)
 
-        self.__add_text_to_image(img, text)
-        self.__add_text_to_image(img, author, is_footer=True)
+        self._add_text_to_image(img, text)
+        self._add_text_to_image(img, author, is_footer=True)
 
-        out_path = self.__save_meme_to_folder(img, img_path)
+        out_path = self._save_meme_to_folder(img, img_path)
         return out_path
 
 
