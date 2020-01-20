@@ -5,3 +5,5 @@ __pycache__/
 *$py.class
 src/static/
 src/tmp/
+venv/
+.vscode/

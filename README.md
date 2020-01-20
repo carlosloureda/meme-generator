@@ -16,14 +16,14 @@ This project is for the BETA nanodegree **Intermediate Python** at Udacity that 
 
 ## Installation
 
+You need to have **python3** and **python-pip** installed on your machine
+
 Download to your project directory, (python3 required):
 
 ```sh
 git clone git@github.com:carlosloureda/meme-generator.git
 cd meme-generator
-pip install flask
-
-python3 app.py
+pip install -r requirements.txt
 ```
 
 ## Starter Code Overview
@@ -34,7 +34,31 @@ There's also a basic flask server which will consume your modules and make it us
 
 ## Usage
 
-<!-- TODO: WIP -->
+### CLI Application - main.py
+
+Command line interpreter (CLI) for creating our own memes from some pictures on your local machine.
+
+```
+python3 main.py
+
+# For help:
+python3 main.py --help
+```
+
+### Web App - app.py
+
+For running the web page under flask, you need to have `flask` installed.
+
+```
+flask run
+```
+
+If you want to enable hot reloadin (through the development environment):
+
+```
+export FLASK_ENV=development
+flask run
+```
 
 ## Learn
 
@@ -62,6 +86,8 @@ This project focuses in 3 main `modules`:
 
 ## Quote Engine Module
 
+Take a look to the [README](src/meme_generator/README.md)
+
 The Quote Engine Module is responsible for ingesting many types of files that contain quotes. A quote contains a body and an author (e.g. "this is a quote body" - Author). This module will be composed of many classes and demonstrate your understanding of complex inheritance, abstract classes, classmethods, strategy objects and other fundamental programming principles.
 
 Review rubric for specific details.
@@ -81,24 +107,15 @@ Separate strategy objects should realize `IngestorInterface` for each file type 
 
 A final Ingestor class should realize the `IngestorInterface` abstract base class and encapsulate your helper classes. It should implement logic to select the appropriate helper for a given file based on filetype.
 
+Take a look to the module's [README](src/quote_engine/README.md)
+
 ## Meme Generator Module
 
-## Main Application
+The Generator Module is built for helping its users to create a **meme** from a given original image. It is ment to add some quotes to this images after resizing them (it also can add the author of the quote to the meme).
 
-## Web App
+As at this moment, this module has a built-in class: **MemeEngine** that will let you generate these memes with ease.
 
-For running the web page under flask, you need to have `flask` installed.
-
-```
-flask run
-```
-
-If you want to enable hot reloadin (through the development environment):
-
-```
-export FLASK_ENV=development
-flask run
-```
+Take a look to the [README](src/meme_generator/README.md)
 
 ## Support
 
